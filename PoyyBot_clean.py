@@ -481,5 +481,5 @@ async def on_message(message):
 
 print('Starting program...')
 
-bot.run('NzgyNjMwNDE3NjQ3Nzk2MjI0.X8O_YA.XYK6EzSlVJDRYZAmkR6r9RLZDQ0')
+bot.run('token')
 
