@@ -5,10 +5,11 @@ import random
 import json
 import time
 import re
+import linecache
 
 #####################################################################################
 ############  Bot written to add fun features to Štosfender server
-#########  Version 2.0.4
+#########  Version 2.7.0
 ####### Python 3.8.4 and discord.py version 1.5.1
 ###### Author: zucc#4876
 
@@ -20,10 +21,19 @@ bot = discord.Client()
 counter = 0
 badpoyy = 0
 goodpoyy = 0
+srijeda = 1
+peaky = 1
+queen = 1
 
+########kluki kompresor
+############## betting game pomocu jsona
+################ rodendani pomocu jsona
+########################## on disconnect test sa spremanjem by writing message u svoj
+################################### potentially reactions 
+##################################### do the tenor shit
+########### terry talk
+################################ hit it and quit it u listu, procitati i onda random baci
 
-######### UPITNO SAD i POYY i SIMP koji se triggeraju random u tekstu
-## nane problem s razmacima??
 
 
 @bot.event
@@ -37,7 +47,10 @@ async def on_ready():
 	#await bot.change_presence(activity=discord.Activity(name='you pee :smirk:', type=discord.ActivityType.watching))
 	#await bot.change_presence(activity=discord.Game(name='poyy kolege ❤️'))
 
-	await bot.change_presence(activity=discord.Game(name='with Xmas decorations ❤️'))
+	# Setting `Listening ` status
+	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="old nostalgic songs"))
+
+	#await bot.change_presence(activity=discord.Game(name='with Xmas decorations ❤️'))
 
 	#counter counts total messages sent
 	#badpoyy for 'bad poyy' command
@@ -45,7 +58,10 @@ async def on_ready():
 	global counter
 	global badpoyy
 	global goodpoyy
-
+	global srijeda
+	global peaky
+	global queen
+	
 	#reading from the file, format is X Y Z for simpler reading
 	with open('counter.txt', 'r+') as myfile:
 
@@ -62,13 +78,30 @@ async def on_ready():
 		goodpoyy = int(lista[2])
 		print(f'Goodpoyy: {goodpoyy}')
 
+		peaky = int(lista[4])
+		hours = int(time.strftime('%H'))
+		print(f'Peaky: {peaky}')
 
+		queen = int(lista[5])
+		print(f'Queen: {queen}')
+
+		dan = time.strftime('%A')
+		if dan == 'Wednesday':
+			print(f'Isprintana srijeda:' + ('Yes' if srijeda == 1 else 'No'))
+		elif dan == 'Thursday':
+			srijeda = 0
+
+			
 @bot.event
 async def on_message(message):
 	#probably not needed, but just in case
 	global counter
 	global badpoyy
 	global goodpoyy
+	global srijeda
+	global peaky
+	global queen
+	
 	#for each message sent on the server incrament by 1, including the PoyyBot
 	counter += 1
 
@@ -80,6 +113,25 @@ async def on_message(message):
 	# if message.author.id == 663803129933856780:
 	# 	return
 
+	#if Dome needs to be temporarely muted
+	# if message.author.id == 705332541439344671:
+	# 	return
+
+	#69420 special event
+	if counter == 69420:
+		if message.author.id == 782630417647796224 or message.author.id == 235088799074484224 or message.author.id == 234395307759108106 or message.author.id == 777942093208748033:
+			counter -= 10
+			return
+
+		autor = '<@' + str(message.author.id) + '>'
+		await message.channel.send(f'{autor} sent 69420th message. Teehee funny number nice. Good job! We getting high af!')
+		await message.channel.send('https://tenor.com/view/bobux-gif-18603683')
+		await message.channel.send('https://tenor.com/view/lizard-dancing-poggers-lizard-dance-poggers-gif-18527737')
+		await message.channel.send('https://tenor.com/view/katie-nolan-69-golf-tougue-out-gif-12612419')
+		return
+
+	
+	
 	if message.channel.id == 782586423332175883:
 		return
 
