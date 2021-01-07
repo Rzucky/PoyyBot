@@ -137,21 +137,44 @@ async def on_message(message):
 
 	#Bot shutdown procedure, only if it by me
 	if (message.author.id == 305465501595729921 and message.content.lower() == 'poyy nane'):
-		
+		await message.channel.send('Nane time! *Upgrades people, upgrades*')
 		with open('counter.txt', 'r+') as myfile:
 			#to remove the 'poyy nane' triggerword
 			counter -= 1
 
 			#saves the important numbers
-			info = (f"{counter} {badpoyy} {goodpoyy}")
+			info = (f"{counter} {badpoyy} {goodpoyy} {srijeda} {peaky} {queen}")
 			myfile.write(info)
 			myfile.close()
+			print("\n\n\n\n\n\n\n DATA SAVED \n\n\n\n\n\n\n")
+
 			#closes the file and stops the program in the terminal
 			raise KeyboardInterrupt
 			
 
+
+	if (message.author.id == 305465501595729921 and message.content.lower() == '+status'):
+		print(f"\nCounter: {counter}\nBadpoyy: {badpoyy}\nGoodpoyy: {goodpoyy}\nSrijeda: {srijeda}\nPeaky: {peaky}\nQueen: {queen}")
+		with open('counter.txt', 'r+') as myfile:
+			#to remove the 'poyy nane' triggerword
+			counter -= 1
+
+			#saves the important numbers
+			info = (f"{counter} {badpoyy} {goodpoyy} {srijeda} {peaky} {queen}")
+			myfile.write(info)
+			print("\n\n DATA SAVED \n\n")
+		return
+
+	#Function that changes the counter amount so i don't have to manually do it
+	if (message.author.id == 305465501595729921 and message.content.startswith('+counter')):
+		msgg = message.content
+		broj = int(msgg[9:])
+		counter = broj
+
+		
 	#IMPORTANT: ID from the server for custom emotes
 	guildstos = bot.get_guild(624602397204807681)
+	guildmine = bot.get_guild(755531886956249098)
 
 	#temporary varibles used for printing
 	user = message.author
@@ -165,38 +188,57 @@ async def on_message(message):
 	#most used variable, puts the whole text in lowercase for easier checking
 	kontent = message.content.lower()
 
+	# #birthday reminder
+	# lista = ['194728866420359168', '220986468686888960', '191918592487325697', '755524718760820878', '160789671599669248', '109554759488266240', '705332541439344671', '755825034219749497', '663803129933856780', '692064709108564015', '767857540360699904','218787234910961665', '224862746964000768','365962520680333314','305465501595729921']
+	# for i in lista:
+	# 	i = int(i)
+	# 	user = await bot.fetch_user(i)
+	# 	await user.send('Hej!\nUskoro je Jarzin rođendan pa ga nemoj propustiti :heart: \nYours truly, PoyyBot')
+	# 	print(f'Uspjesno poslao poruku {i}')
+
+
+#################################################################
+### FUNCTIONS WITH +	and special 
 
 	#formatting help command alphabetically 
 	if(message.content == '+help'):
 
-		await message.channel.send(
+		await message.channel.send(embed=discord.Embed(title='Common functions', description= 
 			"```" +
 			"PoyyBot commands: \n"+
+			"   +8ball              -for life dilemas \n" + 
+			"   +cat                -najbolja funkcija\n" +
+			"   +deepfried          -deepfried photos \n" + 
 			"   +help people        -za slike specijalaca\n"+
 			"   +help video         -popis videa i gifova\n"+
+			"   +owo                -owofy text\n" +
+			"   +peakify            -p e a k y i f y s  text\n" +
+			"   +zvonko             -bude to tako nekada\n" +
 			"   AAAAAAAAA           -AAAAAAAAAAAAAAA\n" + 
 			"   bad poyy            -ako mrzite Poyya :( \n" +
+			"   bee 				-how bees are\n" +
 			"   bubi @tag           -we care for eachother \n" +
-			"   +cat                -najbolja funkcija\n" +
+			"   cursed               -cursed Zvonko\n" +
 			"   cute                -OwO \n"+
 			"   FER SISA            -hehe svi znamo\n" + 
 			"   gledec              -sexy dekan \n"+
+			"   happy               -drunk Kluki\n" +
 			"   hug                 -Poyy will always provide a hug\n"+
 			"   hvala poyy          -ako volite Poyya\n" +
-			"   Juan   			 -our dearest, za Yuki\n" + 
+			"   Juan                -our dearest, za Yuki\n" + 
+			"   jokes               -jokes on you im into that shit\n" +
 			"   kurac/kurčina       -Charlie Oces malo?\n" +
 			"   big PP              -chad Charlie\n" +   
 			"   nibba               -hehe dark\n" +
 			"   ocean               -ocean motion or something\n"+
 			"   oof                 -rough       \n" +
-			"   +owo                -owofy text\n" +
 			"   perhaps             -perhaps?\n"+
 			"   pog                 -POGGERS\n" +
 			"   poyy/pojj           -poyy kolege ❤️\n" + 
 			"   👉👈               -is for me?\n"+
-			"   premium emotovi ->  :yuki_angry:, :catjam:, :nipple_lick:, :yukiHell: \n" +
-			"      $sad             -our sad pepe\n" + 
-			"      $SIMP            -reaction \n" + 
+			"   premium emotovi ->  :yuki_angry:, :catjam:, :nipple_lick:,\n" +
+			"   					:yukiHell:, :dome_angry: \n" + 		
+			"   SIMP                -reaction \n" + 
 			"   srijeda             -AAAAAAAAAAAAAAA\n" +
 			"   stegovno            -kad se doxamo\n" +
 			"   uuuuuuuuu           -kluki rage\n" +
@@ -206,7 +248,7 @@ async def on_message(message):
 			"   zabok               -Heaven\n"+
 			"   zavod               -da se Kluki moze žaliti\n" + 
 
-			"```")
+			"```", color=0x3366FF))
 		return
 
 	if(message.content == '+help people'):
@@ -214,19 +256,24 @@ async def on_message(message):
 		await message.channel.send(
 			"```" +
 			"PoyyBot slike osoba: \n"+
-			"   ❤️ chad ❤️\n" + 
-			"   ❤️ dome ❤️\n" + 
-			"   ❤️ jarza ❤️\n" +
-			"   ❤️ kluki ❤️\n" + 
-			"   ❤️ leica ❤️\n" + 
-			"   ❤️ nane ❤️\n" + 
-			"   ❤️ pasareta ❤️\n" +
-			"   ❤️ peace ❤️\n" +
-			"   ❤️ sexy ❤️\n" +
+			"   ❤️ chad ❤️      \n" + 
+			"   ❤️ dome ❤️      \n" + 
+			"   ❤️ GOD ❤️       \n" + 
+			"   ❤️ jarza ❤️     \n" +
+			"   ❤️ kluki ❤️     \n" + 
+			"   ❤️ leica ❤️     \n" + 
+			"   ❤️ nane ❤️      \n" + 
+			"   ❤️ pasareta ❤️  \n" +
+			"   ❤️ peace ❤️     \n" +
+			"   ❤️ seky ❤️      \n" +
+			"   ❤️ sexy ❤️      \n" +
+			"   ❤️ smile ❤️     \n" +
+			"   ❤️ synapsis ❤️  \n" +
 			"   ❤️ štosdenfer ❤️\n" + 
-			"   ❤️ yuki ❤️\n" + 
-			"   ❤️ wholesome ❤️\n" +
-			"   ❤️ zucc ❤️\n" + 
+			"   ❤️ yuki ❤️      \n" + 
+			"   ❤️ wholesome ❤️ \n" +
+			"   ❤️ +wholesome ❤️\n" +
+			"   ❤️ zucc ❤️      \n" + 
 			"```")
 		return
 
@@ -236,9 +283,13 @@ async def on_message(message):
 			"```" +
 			"PoyyBot videos and GIFS: \n"+
 			"   bljuc \n" +
+			"   bunker \n" +
 			"   brazil \n" +
 			"   crab rave \n" +
+			"   dome_angry\n" +
+			"   fish \n" +
 			"   gay \n" +
+			"   jojcek \n" +
 			"   ja cu se ubit \n" +
 			"   kings \n" +
 			"   milanovic \n" +
@@ -246,13 +297,14 @@ async def on_message(message):
 			"   nmg \n" +
 			"   noti noti \n" +
 			"   plenky \n" +
+			"   sekovno \n" +
 			"   sotono \n" +
 			"   spinny \n" +
 			"   srpski pog \n"+
-
+			"   važi \n" +
 			"```")
 		return
-
+	
 	if(message.content == '+help secret'):
 
 		await message.channel.send(
@@ -266,10 +318,8 @@ async def on_message(message):
 		return
 
 
-
-#################################################################
-### FUNCTIONS WITH +	and special
-
+###############################################
+#### TIME CHECKERS
 
 	# String owofyer, changes using regex
 	if message.content.startswith('+owo'):
