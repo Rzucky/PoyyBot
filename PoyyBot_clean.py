@@ -321,6 +321,72 @@ async def on_message(message):
 ###############################################
 #### TIME CHECKERS
 
+	#srijeda checker
+	dan = time.strftime('%A')
+	hours = int(time.strftime('%H'))
+	minutes = int(time.strftime('%M'))
+	day = time.strftime('%#d')
+	month = int(time.strftime('%#m'))
+	
+	day = int(time.strftime('%#d'))
+
+	#srijeda function utilizing strftime 
+	if dan == 'Wednesday' and srijeda == 0:
+		if hours >= 10:
+
+			cenel = bot.get_channel(773940366499250227)
+			await cenel.send('https://tenor.com/w0Xh.gif')
+			await cenel.send('It is srijeda my drugovi REEEEEEEEEEEEEEEEEEEEEEEE')
+			srijeda = 1
+			return
+
+	###peaky motivation function
+	if month == 1 and peaky == 0:
+		if hours >= 8 and hours <= 14:
+
+			cenel = bot.get_channel(790215903823921182)
+
+			await cenel.send('\U00002728')
+			await cenel.send(file = discord.File(f'peaky/{day}.png'))
+			await cenel.send('\U00002728')
+
+			peaky = 1
+			return
+
+	#peaky reseter
+	if peaky == 1 and hours >= 22:
+		peaky = 0
+		cenel = bot.get_channel(780881245499686932)
+		_k = '<@305465501595729921>'
+		await cenel.send(f'{_k} resetirao sam peaky')
+
+
+	## queen of the day
+	listaljudi = ['194728866420359168', '220986468686888960', '191918592487325697', '755524718760820878', '160789671599669248', '109554759488266240', '705332541439344671', '755825034219749497', '663803129933856780', '692064709108564015', '767857540360699904', '218787234910961665', '224862746964000768', '365962520680333314', '208207487025807360', '223441354259300352', '305465501595729921']
+
+	if queen == 0 and hours >= 10 and hours <= 13:
+		
+		queen = random.choice(listaljudi)
+		queenstr = '<@' + queen + '>'
+		queen = int(queen)
+		
+		cenel = bot.get_channel(773940366499250227)
+		await cenel.send(f':sparkles: {queenstr} is QUEEN od the day! :crown:  YAAAS QUEEN SLAAAAY! :sparkles: ')
+		return
+
+	if queen != 0 and queen != 1 and hours >= 23:
+		queen = 0
+		cenel = bot.get_channel(780881245499686932)
+		_k = '<@305465501595729921>'
+		await cenel.send(f'{_k} resetirao sam queen')
+
+	if message.author.id == queen:
+		await message.add_reaction('\U0001F451')
+
+
+#########################################
+#######  +functions
+
 	# String owofyer, changes using regex
 	if message.content.startswith('+owo'):
 
