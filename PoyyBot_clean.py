@@ -389,7 +389,9 @@ async def on_message(message):
 
 	# String owofyer, changes using regex
 	if message.content.startswith('+owo'):
-
+		
+		_lenny_list = ['(◕ᴥ◕)', '(人 ◕ω◕)', '^ↀᴥↀ^','(๑￫ܫ￩)', '(❍ᴥ❍ʋ)', '(✪‿✪)ノ', 'ʕ￫ᴥ￩ʔ', 'ʕ•ᴥ•ʔ', 'ʕ·ᴥ·ʔ', '(✿ヘᴥヘ)', '(ﾉ≧ڡ≦)', '(✾♛‿♛)', '( ͡°❥ ͡°)', '( ͡°👅 ͡°)', '꒒ ০ ⌵ ୧ ♡', '༼♥ ل͜ ♥༽','ʕ•̬͡•ʔ', '(๑•́ ω •̀๑)', 'ᵔᴥᵔ)','( っ´ω｀c)','( ^◡^)','╰(⸝⸝⸝´꒳`⸝⸝⸝)╯', '(♥ω♥ ) ~♪', '( ﾟ∀ﾟ)ﾉ【I LOVE U】', '(>^_^)><(^o^<)']
+		
 		string = message.content
 		string = re.sub(r'(?:r|l)', 'w', string)
 		string = re.sub(r'(?:R|L)', 'W', string)
@@ -399,7 +401,8 @@ async def on_message(message):
 		string = re.sub(r'(?:r|l)', 'w', string)
 		string = re.sub(r'ove', 'uv', string)
 		#5: is to remove +owo from the start
-		await message.channel.send('<:uwu:774299564693520405>  ' + string[5:] + '  <:uwu:774299564693520405>' );
+		await message.delete()
+		await message.channel.send(embed=discord.Embed(title=random.choice(_lenny_list) + '  ' + string[5:] + '  ' + random.choice(_lenny_list), color=0xffc0cb))
 		return
 	
 	#send random cat gif, from CatAPI database
@@ -412,6 +415,38 @@ async def on_message(message):
 			await message.channel.send('Site je down sorry :(')
 
 
+	#spreads text with spaces like: L o r e m  I p s u m
+	if message.content.startswith('+peakify'):
+		string = message.content
+		string = string[9:]
+		string = string.replace(' ', ' \U00002728 ')
+		string = list(string)
+		out = '\U00002728 '
+		for s in string:
+			out += (str(s) + ' ')
+		out += '\U00002728'
+
+		await message.delete()
+		await message.channel.send(embed=discord.Embed(title=out, color=0xb00b13))
+	
+	## zvonko funkcija
+	if message.content.startswith('+zvonko'):
+		zvonko = ['bkvl', 'l a g a n o', 'lepo lepo', 'mnogo lepo', 'bude to tako nekada', 'tebra', 'Now I am become Death, the destroyer of Lopi!', "You can run, but you can't hide from SOA!"]
+		out = random.choice(zvonko)
+		await message.channel.send(out)
+
+	if message.content.startswith('+8ball'):
+		_8ball = ['As I see it, yes.', 'Ask again later.', 'Better not tell you now.', 'Cannot predict now.', 'Concentrate and ask again.', "Don’t count on it.", 'It is certain.', 'It is decidedly so.', 'Most likely.', 'My reply is no.', 'My sources say no.', 'Outlook not so good.', 'Outlook good.', 'Reply hazy, try again.', 'Signs point to yes.', 'Very doubtful.', 'Without a doubt.', 'Yes.', 'Yes – definitely.', 'You may rely on it.']
+
+		autor = '<@' + str(message.author.id) + '>'
+		response = random.choice(_8ball)
+
+		async with message.channel.typing():
+			await asyncio.sleep(1.5)
+
+		await message.channel.send(embed=discord.Embed(title= 'Magic 8ball says:',description=f'{autor}, moj odgovor je -> **{response}**', color=0x000000))
+		#await message.channel.send(f'{autor}, moj odgovor je -> **{response}**')
+	
 	if (not random.randint(0, 300)):
 		autor = '<@' + str(message.author.id) + '>'
 		await message.channel.send(f'Nasumično si odabran(a) za jedan veliki hug {autor} :heart:, puno mi znacis i nadam se da ćeš imati dobar ostatak dana! <:uwuLove:779332074665541663>')
