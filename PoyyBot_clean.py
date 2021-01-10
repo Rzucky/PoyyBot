@@ -9,7 +9,7 @@ import linecache
 
 #####################################################################################
 ############  Bot written to add fun features to Štosfender server
-#########  Version 2.7.0
+#########  Version 2.7.4
 ####### Python 3.8.4 and discord.py version 1.5.1
 ###### Author: zucc#4876
 
@@ -138,7 +138,7 @@ async def on_message(message):
 	#Bot shutdown procedure, only if it by me
 	if (message.author.id == 305465501595729921 and message.content.lower() == 'poyy nane'):
 		await message.channel.send('Nane time! *Upgrades people, upgrades*')
-		with open('counter.txt', 'r+') as myfile:
+		with open('counter.txt', 'w') as myfile:
 			#to remove the 'poyy nane' triggerword
 			counter -= 1
 
@@ -155,7 +155,7 @@ async def on_message(message):
 
 	if (message.author.id == 305465501595729921 and message.content.lower() == '+status'):
 		print(f"\nCounter: {counter}\nBadpoyy: {badpoyy}\nGoodpoyy: {goodpoyy}\nSrijeda: {srijeda}\nPeaky: {peaky}\nQueen: {queen}")
-		with open('counter.txt', 'r+') as myfile:
+		with open('counter.txt', 'w') as myfile:
 			#to remove the 'poyy nane' triggerword
 			counter -= 1
 
