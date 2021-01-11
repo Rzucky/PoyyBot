@@ -434,7 +434,8 @@ async def on_message(message):
 		zvonko = ['bkvl', 'l a g a n o', 'lepo lepo', 'mnogo lepo', 'bude to tako nekada', 'tebra', 'Now I am become Death, the destroyer of Lopi!', "You can run, but you can't hide from SOA!"]
 		out = random.choice(zvonko)
 		await message.channel.send(out)
-
+	
+	#imitates the Magic 8ball, answers all of your life questions
 	if message.content.startswith('+8ball'):
 		_8ball = ['As I see it, yes.', 'Ask again later.', 'Better not tell you now.', 'Cannot predict now.', 'Concentrate and ask again.', "Don’t count on it.", 'It is certain.', 'It is decidedly so.', 'Most likely.', 'My reply is no.', 'My sources say no.', 'Outlook not so good.', 'Outlook good.', 'Reply hazy, try again.', 'Signs point to yes.', 'Very doubtful.', 'Without a doubt.', 'Yes.', 'Yes – definitely.', 'You may rely on it.']
 
@@ -447,20 +448,24 @@ async def on_message(message):
 		await message.channel.send(embed=discord.Embed(title= 'Magic 8ball says:',description=f'{autor}, moj odgovor je -> **{response}**', color=0x000000))
 		#await message.channel.send(f'{autor}, moj odgovor je -> **{response}**')
 	
+	#reads from uleti.txt, throws out random ulet
 	if message.content.startswith('+uleti'):
 
 		_k = random.randint(1,60)
 		_line = linecache.getline('uleti.txt', _k)
 		await message.channel.send(_line)
 		
+		#clearcache is important, to clear the cache from imported file
 		linecache.clearcache()
 		return
-
+	
+	#𝖋𝖔𝖓𝖙 𝖈𝖍𝖆𝖓𝖌𝖊𝖗 to old something similar to Old English
 	if message.content.startswith('+fensi'):
 		string = message.content
 		string = string[7:]
 		autor = '<@' + str(message.author.id) + '>'
 		
+		#huge brute force, replacing each letter, couldn't find font changer
 		string = string.replace('A', '𝕬').replace('B', '𝕭').replace('C', '𝕮').replace('D', '𝕯').replace('E', '𝕰').replace('F', '𝕱').replace('G', '𝕲').replace('H', '𝕳').replace('I', '𝕴').replace('J', '𝕵').replace('K', '𝕶').replace('L', '𝕷').replace('M', '𝕸').replace('N', '𝕹').replace('O', '𝕺').replace('P', '𝕻').replace('Q', '𝕼').replace('R', '𝕽').replace('S', '𝕾').replace('T', '𝕿').replace('U', '𝖀').replace('V', '𝖁').replace('W', '𝖂').replace('X', '𝖃').replace('Y', '𝖄').replace('Z', '𝖅') \
 						.replace('a', '𝖆').replace('b', '𝖇').replace('c', '𝖈').replace('d', '𝖉').replace('e', '𝖊').replace('f', '𝖋').replace('g', '𝖌').replace('h', '𝖍').replace('i', '𝖎').replace('j', '𝖏').replace('k', '𝖐').replace('l', '𝖑').replace('m', '𝖒').replace('n', '𝖓').replace('o', '𝖔').replace('p', '𝖕').replace('q', '𝖖').replace('r', '𝖗').replace('s', '𝖘').replace('t', '𝖙').replace('u', '𝖚').replace('v', '𝖛').replace('w', '𝖜').replace('x', '𝖝').replace('y', '𝖞').replace('z', '𝖟')
 
@@ -479,7 +484,7 @@ async def on_message(message):
 			await message.channel.send(f'{autor} https://tenor.com/view/warm-hug-gif-10592083')
 	
 	
-	if (not random.randint(0, 300)):
+	if (not random.randint(0, 500)):
 		autor = '<@' + str(message.author.id) + '>'
 		await message.channel.send(f'Nasumično si odabran(a) za jedan veliki hug {autor} :heart:, puno mi znacis i nadam se da ćeš imati dobar ostatak dana! <:uwuLove:779332074665541663>')
 		await message.channel.send(f'{autor} https://media.giphy.com/media/ZQN9jsRWp1M76/giphy.gif')
