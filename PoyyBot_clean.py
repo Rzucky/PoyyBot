@@ -447,12 +447,55 @@ async def on_message(message):
 		await message.channel.send(embed=discord.Embed(title= 'Magic 8ball says:',description=f'{autor}, moj odgovor je -> **{response}**', color=0x000000))
 		#await message.channel.send(f'{autor}, moj odgovor je -> **{response}**')
 	
+	if message.content.startswith('+uleti'):
+
+		_k = random.randint(1,60)
+		_line = linecache.getline('uleti.txt', _k)
+		await message.channel.send(_line)
+		
+		linecache.clearcache()
+		return
+
+	if message.content.startswith('+fensi'):
+		string = message.content
+		string = string[7:]
+		autor = '<@' + str(message.author.id) + '>'
+		
+		string = string.replace('A', '𝕬').replace('B', '𝕭').replace('C', '𝕮').replace('D', '𝕯').replace('E', '𝕰').replace('F', '𝕱').replace('G', '𝕲').replace('H', '𝕳').replace('I', '𝕴').replace('J', '𝕵').replace('K', '𝕶').replace('L', '𝕷').replace('M', '𝕸').replace('N', '𝕹').replace('O', '𝕺').replace('P', '𝕻').replace('Q', '𝕼').replace('R', '𝕽').replace('S', '𝕾').replace('T', '𝕿').replace('U', '𝖀').replace('V', '𝖁').replace('W', '𝖂').replace('X', '𝖃').replace('Y', '𝖄').replace('Z', '𝖅') \
+						.replace('a', '𝖆').replace('b', '𝖇').replace('c', '𝖈').replace('d', '𝖉').replace('e', '𝖊').replace('f', '𝖋').replace('g', '𝖌').replace('h', '𝖍').replace('i', '𝖎').replace('j', '𝖏').replace('k', '𝖐').replace('l', '𝖑').replace('m', '𝖒').replace('n', '𝖓').replace('o', '𝖔').replace('p', '𝖕').replace('q', '𝖖').replace('r', '𝖗').replace('s', '𝖘').replace('t', '𝖙').replace('u', '𝖚').replace('v', '𝖛').replace('w', '𝖜').replace('x', '𝖝').replace('y', '𝖞').replace('z', '𝖟')
+
+		string += f'\n𝔟𝔶: {autor}'
+
+		await message.delete()
+		await message.channel.send(string)
+	
+	
+	#kluki randomizer since he is special
+	if message.author.id == 220986468686888960:
+		if (not random.randint(0, 150)):
+			autor = '<@' + str(message.author.id) + '>'
+			#klukicount = 0
+			await message.channel.send(f'{autor} ja znam da ti mene najviše voliš na ovom serveru, ti imas posebno mjesto u mom ~~procesoru~~ srcu! :heart:')
+			await message.channel.send(f'{autor} https://tenor.com/view/warm-hug-gif-10592083')
+	
+	
 	if (not random.randint(0, 300)):
 		autor = '<@' + str(message.author.id) + '>'
 		await message.channel.send(f'Nasumično si odabran(a) za jedan veliki hug {autor} :heart:, puno mi znacis i nadam se da ćeš imati dobar ostatak dana! <:uwuLove:779332074665541663>')
 		await message.channel.send(f'{autor} https://media.giphy.com/media/ZQN9jsRWp1M76/giphy.gif')
 
+	if counter % 1000 == 0:
+		## we dont want it to trigger on bots because it is not fun
+		if message.author.id == 782630417647796224 or message.author.id == 235088799074484224 or message.author.id == 234395307759108106 or message.author.id == 777942093208748033:
+			counter -= 10
+			return
 
+		k = counter // 1000
+		autor = '<@' + str(message.author.id) + '>'
+		await message.channel.send(f'{autor} je napisao/la vrlo specijalnu {k}000. poruku, WOOHOOOOO ')
+		#await message.channel.send('https://tenor.com/view/excited-hockey-kid-yeah-gif-10474493')
+		await message.channel.send('https://tenor.com/view/pikachu-pokemon-love-happy-hearts-gif-16494752')
+		return
 
 
 ##################################################
