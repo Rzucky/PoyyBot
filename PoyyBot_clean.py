@@ -50,8 +50,6 @@ async def on_ready():
 	# Setting `Listening ` status
 	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="old nostalgic songs"))
 
-	#await bot.change_presence(activity=discord.Game(name='with Xmas decorations ❤️'))
-
 	#counter counts total messages sent
 	#badpoyy for 'bad poyy' command
 	#goodpoyy for 'hvala poyy' command 
@@ -116,6 +114,10 @@ async def on_message(message):
 	#if Dome needs to be temporarely muted
 	# if message.author.id == 705332541439344671:
 	# 	return
+
+	#if štos needs to be temporarely muted
+	if message.author.id == 365962520680333314:
+		return
 
 	#69420 special event
 	if counter == 69420:
@@ -456,6 +458,16 @@ async def on_message(message):
 		await message.channel.send(_line)
 		
 		#clearcache is important, to clear the cache from imported file
+		linecache.clearcache()
+		return
+	
+	if message.content.startswith('+cum'):
+
+		_k = random.randint(1,110)
+		_line = linecache.getline('cumandgo.txt', _k)
+		embed = discord.Embed(title= _line,color=discord.Colour.green())
+		await message.channel.send(embed = embed)
+		
 		linecache.clearcache()
 		return
 	
