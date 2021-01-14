@@ -517,23 +517,55 @@ async def on_message(message):
 
 ##################################################
 ### TEXT CHECKERS WITH TEXT/EMOJI RESPONSES
+	######### Special for reviews
+	
+	#good reponse by bot, give +1 goodpoyy to rating
+	if 'hvala poyy' in kontent:
+		autor = '<@' + str(message.author.id) + '>'
 
+		await message.channel.send(f"Nemaš frke srećo {autor}  <:uwuLove:779332074665541663> ")
+
+		goodpoyy += 1
+		return
+	
+	#bad reponse by bot, give +1 badpoyy to rating
+	if 'bad poyy' in kontent:
+		autor = '<@' + str(message.author.id) + '>'
+		if message.author.id == 663803129933856780 or message.author.id == 755524718760820878:
+			emoji = discord.utils.get(guildstos.emojis, name='sikeniggayouthought')
+			await message.add_reaction(emoji)
+			await message.channel.send(f"{autor} i know you don't, you love me :heart:")
+			return
+
+		await message.channel.send(f"{autor} hates me... I'm sorry... :sob:  I hope one day you will love me... :cry:  ")
+
+		badpoyy += 1
+		return
+	
+	#special response when addressing poyybot
+	if 'volim te poyy' in kontent:
+		autor = '<@' + str(message.author.id) + '>'
+		goodpoyy += 1
+
+		await message.channel.send(f"{autor} ja tebe volim više :heart:")
+		return
+	
 	if (kontent == 'poyy' or kontent == 'pojj'):
 		
 		await message.channel.send('poyy  :heart:');
 		await message.add_reaction('❤️')
 
 
-	##### to be checked
-	# if (('sad' in kontent) and not(':sad_pepe:' in kontent)):
-	# 	await message.add_reaction('\U0001FAC2')
-
 	if 'poyy' in kontent and not 'poyybot' in kontent:
 		await message.channel.send('poyy  :heart:');
 		await message.add_reaction('❤️')
 
-	# if 'simp' in kontent:
-	# 	await message.add_reaction(discord.utils.get(guildstos.emojis, name='pepe_simp'))
+	if 'p*yybot' in kontent:
+		autor = '<@' + str(message.author.id) + '>'
+		await message.channel.send(f"{autor} WHY YOU DARE NOT MENTION MY NAME?!")
+
+	if 'simp' in kontent:
+		await message.add_reaction(discord.utils.get(guildstos.emojis, name='pepe_simp'))
 
 	if 'nane' in kontent or 'sleep' in kontent:
 		kontent = kontent.replace('sleep', 'nane')
@@ -575,23 +607,6 @@ async def on_message(message):
 			words = words.upper()
 			await message.channel.send(f'{words} makes me :face_vomiting:')
 	
-
-	######### Special for reviews
-	if 'hvala poyy' in kontent:
-		autor = '<@' + str(message.author.id) + '>'
-
-		await message.channel.send(f"Nemaš frke srećo {autor}  <:uwuLove:779332074665541663> ")
-
-		goodpoyy += 1
-		return
-
-	if 'bad poyy' in kontent:
-		autor = '<@' + str(message.author.id) + '>'
-
-		await message.channel.send(f"{autor} hates me... I'm sorry... :sob:  I hope one day you will love me... :cry:  ")
-
-		badpoyy += 1
-		return
 
 ##################################################
 ### PICTURE RESPONSES
